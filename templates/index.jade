@@ -1,0 +1,20 @@
+﻿doctype html
+html(lang="en")
+	head
+		meta(http-equiv='Content-Type',content='text/html; charset=urf-8')
+		meta(http-equiv='X-UA-Compatible',content='IE=10')
+		title 首页
+		script(src='/public/js/common.js')
+		script(src='/public/js/jquery.js')
+		script(src='/public/js/sea.js')
+		script(type='text/javascript').
+			seajs.config({base:"/public"});seajs.use('js/index');
+		link(rel='stylesheet',type='text/css',href='/public/css/index.css')
+		link(rel='stylesheet',type='text/css',href='/public/plugin/zTree/css/zTreeStyle/zTreeStyle.css')
+	body 
+		div.file_wrap
+			div.file_list
+				include ./file_list.jade
+			div.file_editor
+				include ./file_editor.jade
+		div#script_content	!{init_script} 

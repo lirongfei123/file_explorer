@@ -1,0 +1,177 @@
+@charset "UTF-8";
+/* CSS Document */
+html, body {
+  margin: 0px;
+  width: 100%;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-size: 13px;
+}
+
+#main_body, .main_center {
+  width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+ul, ol, h1, h2, h3, h4, h5, p {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 100;
+}
+
+li {
+  list-style: none;
+}
+
+dl, dd {
+  margin: 0;
+}
+
+/*省略号*/
+.addDian {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+}
+
+.clear {
+  clear: both;
+}
+
+/*零宽度空格*/
+.clearfix:after, .clearfix:before {
+  content: "\200B";
+  display: block;
+  height: 0;
+  line-height: 0;
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+/*图片衔接去除边框*/
+a.a_img {
+  outline: none;
+  color: #EEEBEE;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+a.a_img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  border: 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+a[target="_blank"] {
+  cursor: alias;
+}
+
+a.black {
+  color: #333;
+}
+
+a.c_h:hover {
+  color: #b57e23 !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/*表格*/
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.inline_block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+.span_icon, .span_text {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: middle;
+}
+
+.layout_float_wrap:after, .layout_wrap:before {
+  content: "\200B";
+  display: block;
+  height: 0;
+  line-height: 0;
+  clear: both;
+}
+
+.layout_float_wrap {
+  *zoom: 1;
+}
+
+.layout_float_wrap .layout_float_left {
+  float: left;
+}
+.layout_float_wrap .layout_float_right {
+  float: right;
+}
+
+.p_a {
+  display: block;
+  text-align: left;
+  width: 100%;
+}
+
+/*sass函数*/
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.file_wrap {
+  height: 100%;
+  width: 100%;
+}
+.file_wrap .file_list {
+  float: left;
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+  min-width: 180px;
+}
+.file_wrap .file_editor {
+  height: 100%;
+  overflow: auto;
+  background: #ccc;
+}
+.file_wrap .file_editor #editor_content_wrap {
+  height: 100%;
+  width: 100%;
+}
+.file_wrap .file_editor #editor_content_wrap .editor_content {
+  height: 100%;
+  width: 100%;
+}
