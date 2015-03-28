@@ -1,10 +1,19 @@
 var express=require("express");
+var bodyParser = require('body-parser');
 var fs=require("fs")
 var jade=require("jade");
 var route=require("./route")
 var app_tools=require("./tools/app");//自定义工具
 var app=express();
 app.use('/public',express.static(__dirname+"/public"));//设置静态文件目录
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+/*默认路由*/
+app.all("*",function(req,res,next){
+	
+	console.log(req.path);
+	next();
+});
 /*先过滤具体路由*/
 app.all("*",function(req,res,next){
 	var path=req.path;

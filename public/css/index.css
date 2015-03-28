@@ -162,6 +162,10 @@ html, body {
   border-right: 1px solid #ccc;
   min-width: 180px;
 }
+.file_wrap .file_list #new_file_explorer {
+  text-align: center;
+  padding: 10px 0;
+}
 .file_wrap .file_editor {
   height: 100%;
   overflow: auto;

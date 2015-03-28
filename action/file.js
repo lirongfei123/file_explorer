@@ -10,14 +10,18 @@ exports.getdirtree=function(req,res){
 			var file=dir+"/"+files[i];
 			var file_info=fs.statSync(file);
 			if(file_info.isDirectory()){
-				data.push({id:file,name:files[i],isParent:true,children:get_tree(file)});
+				data.push({id:file,name:files[i],isParent:true});
 			}else{
 				data.push({id:file,name:files[i]});
 			}
 		}
 		return data;
 	}
-	res.send(JSON.stringify(get_tree(dir)));
+	if(fs.existsSync(dir)){
+		res.send(JSON.stringify(get_tree(dir)));
+	}else{
+		res.send("no");
+	}
 }
 exports.edit=function(req,res){
 	var path=req.query["file"];
@@ -26,12 +30,12 @@ exports.edit=function(req,res){
 			fs.readFile(path,function(err,data){
 				if(err) throw err;
 				if(req.get("HTTP_X_PJAX")){//如果是pjax就返回局部内容
-					res.send("<div id=\"ajax_file_content\" style=\"display:none;\">"
-					+data.toString()+"</div><img src='error' style='position:absolute;left:-100000px;' onerror='load_file(\""
+					res.send("<script type=\"text/html\" id=\"ajax_file_content\" style=\"display:none;\">"
+					+data.toString()+"</script><img src='error' style='position:absolute;left:-100000px;' onerror='load_file(\""
 					+path+"\",document.getElementById(\"ajax_file_content\").innerHTML)' />");
 				}else{//如果是重新打开就返回完整内容
-					var script="<div id=\"ajax_file_content\" style=\"display:none;\">"
-					+data.toString()+"</div><script>var init_load_file_path=\""
+					var script="<script type=\"text/html\" id=\"ajax_file_content\" style=\"display:none;\">"
+					+data.toString()+"</script><script>var init_load_file_path=\""
 					+path+"\";var init_load_file_content=document.getElementById(\"ajax_file_content\").innerHTML</script>";
 					var html=jade.renderFile("./templates/index.jade",{init_script:script});
 					res.send(html);
@@ -39,6 +43,21 @@ exports.edit=function(req,res){
 			});
 		}else{
 			res.send('no file');
+		}
+	});
+}
+exports.save=function(req,res){
+	var value=req.body["value"];
+	var path=req.body["path"];
+	fs.exists(path,function(exists){
+		if(exists){
+			fs.writeFile(path, value,function(err){
+				if(!err){
+					res.send("1");
+				}else{
+					res.send("0");
+				}
+			});
 		}
 	});
 }

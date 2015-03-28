@@ -6,14 +6,18 @@ html(lang="en")
 		title 首页
 		script(src='/public/js/common.js')
 		script(src='/public/js/jquery.js')
+		script(src='/public/plugin/bs/js/bootstrap.min.js')
 		script(src='/public/js/sea.js')
 		script(type='text/javascript').
 			seajs.config({base:"/public"});seajs.use('js/index');
 		link(rel='stylesheet',type='text/css',href='/public/css/index.css')
 		link(rel='stylesheet',type='text/css',href='/public/plugin/zTree/css/zTreeStyle/zTreeStyle.css')
+		link(rel='stylesheet',type='text/css',href='/public/plugin/bs/css/bootstrap.min.css')
 	body 
 		div.file_wrap
 			div.file_list
+				#new_file_explorer
+					button.btn(type="button") 打开文件夹
 				include ./file_list.jade
 			div.file_editor
 				include ./file_editor.jade

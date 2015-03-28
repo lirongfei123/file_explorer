@@ -183,6 +183,27 @@
     }
 })(window);
 var utils={
+	load_template:function(templte_func){
+        var funcstr=templte_func.toString();
+        //funcstr=funcstr.replace(/[\n\r]/g,"==-==");
+        var reg=/<script.*id\s*=\s*(['"])(.+?)\1>([\s\S]+?)<\/script>/gm;
+        do{
+            reg_result=reg.exec(funcstr);
+            if(reg_result!=null){
+                var script=document.createElement("script");
+                script.id=reg_result[2];
+                try{
+                    script.innerHTML=reg_result[3];
+                }catch(e){
+                    script.text=reg_result[3];
+                }
+                script.type="text/html";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }else{
+                break;
+            }
+        }while(reg.lastIndex<=funcstr.length)
+    },
     //获取有前缀的样式名称，用于js动态设置
     get_vendor_style:function(style){
         var jstyle=style.charAt(0).toUpperCase()+style.substr(1);
